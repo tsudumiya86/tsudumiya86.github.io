@@ -805,27 +805,47 @@
 
 
   <script type="text/javascript" src="https://weban.jp/contents/assets/js/common.js"></script>
+  <!--
+  <script type="text/javascript">
+    function fetch_twitter_count(url, selector) {
+      	$.ajax({
+	        url:'http://jsoon.digitiminimi.com/twitter/count.json',
+	        dataType:'jsonp',
+	        timeout: 10000,
+	        data:{
+	            	url:url
+	        	}
+	        })
+	        .done(function(res){
+	          	$( selector ).html( res.count || 0 );
+	        }),
+	        .fail(function(){
+	            $( selector ).html('error');
+	        });
+    }
+    $(function(){
+      fetch_twitter_count('https://weban.jp/contents/guide/report/118.html', '.twitter-count');
+    });
+  </script>
+  -->
   <script type="text/javascript">
     function fetch_twitter_count(url, selector) {
       jQuery.ajax({
         url:'http://jsoon.digitiminimi.com/twitter/count.json',
         dataType:'jsonp',
-        timeout: 10000,
-        data:{
-            url:url
-        },
-        success:function(res){
-          jQuery( selector ).html( res.count || 0 );
-        },
-        error:function(){
-            jQuery( selector ).html('error');
-        }
-      });
+        timeout: 30000,
+        data:{url:url}
+        }).done(function(res){
+          $( selector ).html( res.count || 0 );
+        }).fail(function(){
+          $( selector ).html('error');
+        });
     }
-    jQuery(function(){
+    $(window).load(function(){
       fetch_twitter_count('https://weban.jp/contents/guide/report/118.html', '.twitter-count');
     });
   </script>
+
 
   <!-- Google Tag Manager -->
   <noscript>
